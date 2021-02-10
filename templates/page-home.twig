@@ -1,0 +1,11 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+  {{ renderComponent('PostHero') }}
+  {{ renderComponent('TeaserResearch') }}
+  {{ renderComponent('PageTools', {
+    title: post.tools_title,
+    link: post.tools_link,
+    items: post.tools_items,
+  }) }}
+{% endblock %}

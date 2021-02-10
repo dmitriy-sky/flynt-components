@@ -1,0 +1,90 @@
+<section class="dpl-teaser-research" id="teaser-research" is="teaser-research">
+  <div class="dpl-teaser-research__container">
+    <div class="dpl-teaser-research__boundary">
+      <div class="dpl-teaser-research__top">
+        <div class="dpl-teaser-research__top-container">
+          <div class="dpl-teaser-research__left">
+            <h3 class="dpl-teaser-research__heading">
+              {{ options.global_TeaserResearch_title }}
+            </h3>
+            <div class="dpl-teaser-research__description">
+              {{ options.global_TeaserResearch_description }}
+            </div>
+          </div>
+          <div class="dpl-teaser-research__right">
+            <a class="dpl-teaser-research__explore" href="{{ options.global_TeaserResearch_link.url }}">
+              {{ options.global_TeaserResearch_link.title }}
+            </a>
+            <div class="dpl-teaser-research__controls">
+              <span data-slider-button="prev" class="scroll-research-prev slider-button slider-button--prev">
+                <i class="icon arrow blue left"></i>
+              </span>
+              <span data-slider-button="next" class="scroll-research-next slider-button slider-button--next">
+                <i class="icon arrow blue"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dpl-teaser-research__bottom">
+        <div class="dpl-teaser-research__bottom-container">
+          <div data-slider class="slider swiper-container themeLight">
+            <div class="dpl-teaser-research__items swiper-wrapper">
+              {% for research_item in research_result %}
+                {% set post = TimberPost(research_item) %}
+                {% set type_parent = '' %}
+                {% set type_child = '' %}
+                {% for type in post.terms('research_type') %}
+                  {% if type.parent %}
+                    {% set type_child = type %}
+                  {% else %}
+                    {% set type_parent = type %}
+                  {% endif %}
+                {% endfor %}
+                <a class="dpl-teaser-research__item slider-item swiper-slide {{ type_parent.slug }}" href="{{ post.link }}">
+                  {% if type_parent %}
+                    <div class="dpl-research-featured__label">
+                      <i class="icon research research--{{ type_parent.slug }}"></i>
+                      <span class="dpl-research-types__label__text">
+                        {% if type_child.name  %}
+                          {{ type_child.name }}
+                        {% else %}
+                          {{ type_parent.name }}
+                        {% endif %}
+                      </span>
+                    </div>
+                  {% endif %}
+                  <div class="dpl-teaser-research__title">
+                    {{ post.post_title|truncate(10, true) }}
+                  </div>
+                  <div class="dpl-teaser-research__desc">
+                    {{ post.hero_description }}
+                  </div>
+                  <div class="dpl-teaser-research__info">
+                    {% if post.hero_label %}
+                      <span>{{ post.hero_label }}</span>
+                    {% endif %}
+                    {% if post.hero_source_date %}
+                      {{ post.hero_source_date|date("m/d/Y") }}
+                    {% endif %}
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="dpl-teaser-research__controls">
+          <a class="dpl-teaser-research__explore" href="{{ options.global_TeaserResearch_link.url }}">
+            {{ options.global_TeaserResearch_link.title }}
+          </a>
+            <span class="scroll-research-prev slider-button slider-button-mobile--prev">
+            <i class="icon arrow blue left"></i>
+            </span>
+            <span class="scroll-research-next slider-button slider-button-mobile--next">
+              <i class="icon arrow blue"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,98 @@
+.dpl-cta-tool {
+  &:nth-child(odd) {
+    .dpl-cta-tool__item {
+      @include bp(sm2){
+        grid-gap: rem(40);
+        grid-template-columns: 5fr 6fr;
+      }
+      .dpl-cta-tool__left {
+        @include bp(sm2){
+          order: 2;
+        }
+      }
+      .dpl-cta-tool__right {
+        @include bp(sm2){
+          order: 1;
+        }
+      }
+    }
+  }
+  &__left {
+    padding: rem(14) rem(26) rem(55);
+    order: 2;
+    @include bp(sm2){
+      padding: rem(66);
+      order: initial;
+    }
+  }
+  &__right {
+    padding-top: rem(55);
+    order: 1;
+    @include bp(sm2){
+      padding-top: 0;
+      order: initial;
+    }
+  }
+  &__item {
+    background-color: $neutral-0;
+    display: grid;
+    grid-gap: rem(20);
+    @include bp(sm2){
+      grid-gap: rem(40);
+      grid-template-columns: 6fr 5fr;
+    }
+  }
+  &__label {
+    @extend .preset-7-halyard-medium;
+    color: $blue-600;
+    margin-bottom: rem(16);
+  }
+  &__title {
+    @extend .mobile-preset-3-halyard-semibold;
+    color: $blue-900;
+    margin-bottom: rem(15);
+    @include bp(sm2){
+      font-family: $font-halyard-display;
+      font-size: 2.148rem;
+      font-weight: 500;
+      line-height: 1.04;
+    }
+  }
+
+  &__description {
+    @extend .mobile-preset-6-halyard-regular;
+    color: $blue-900;
+    @include bp(sm2){
+      font-family: $font-halyard-display;
+      font-size: 1.1rem;
+      line-height: 1.25;
+    }
+  }
+
+  &__button {
+    @include green-button;
+    margin-top: rem(30);
+    @media (max-width: $small2) {
+      display: block;
+      padding: 0.45rem 1.25rem 1rem;
+    }
+  }
+}
+
+.cta-tool-wrapper {
+  background-color: $neutral-100;
+  padding: rem(64) 0;
+
+  .dpl-cta-tool {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    width: 64rem;
+    padding: 0 0.75rem;
+    padding: 0 rem(15);
+    @include bp(sm2){
+      padding: 0 rem(40);
+    }
+  }
+}

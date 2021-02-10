@@ -1,0 +1,82 @@
+{% if post._wp_page_template == 'page-home.php' %}
+<section class="dpl-post-hero dpl-post-hero--home">
+{% else %}
+<section class="dpl-post-hero">
+{% endif %}
+  <div class="dpl-post-hero__boundary">
+    <div class="dpl-post-hero__grid">
+      <div class="dpl-post-hero__left">
+        {% if post.post_type == 'research' %}
+          {% set type_parent = '' %}
+          {% set type_child = '' %}
+          {% for type in post.terms('research_type') %}
+            {% if type.parent %}
+              {% set type_child = type %}
+            {% else %}
+              {% set type_parent = type %}
+            {% endif %}
+          {% endfor %}
+          {% if type_parent %}
+            <div class="dpl-post-hero__label">
+              <i class="icon research research--{{ type_parent.slug }}"></i>
+              <span class="dpl-research-types__label__text">
+                {% if type_child.name  %}
+                  {{ type_child.name }}
+                {% else %}
+                  {{ type_parent.name }}
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+        {% elseif post.post_type == 'news' %}
+          <div class="dpl-post-hero__label">
+            {{ post.hero_label }}
+            <span class="dpl-post-hero__date">
+              {{ post.post_date|date('m/d/Y') }}
+            </span>
+          </div>
+        {% elseif post.post_type == 'story' %}
+          <div class="dpl-post-hero__label">
+            {{ __('Impact Story', 'flynt') }}
+          </div>
+        {% else %}
+          <div class="dpl-post-hero__label">
+            {{ post.hero_label }}
+          </div>
+        {% endif %}
+        <h1 class="dpl-post-hero__title">
+          {{ post.post_title }}
+        </h1>
+        {% if post.post_type != 'story' %}
+          <h6 class="dpl-post-hero__description">
+            {{ post.hero_description }}
+          </h6>
+        {% endif %}
+        {% if post._wp_page_template == 'page-home.php' %}
+          <a class="dpl-post-hero__button" href="{{ post.hero_link.url }}">
+            {{ post.hero_link.title }}
+          </a>
+        {% elseif post._wp_page_template == 'page-news.php' %}
+          <div class="dpl-post-hero__link">
+            {{ __('Media inquiry?', 'flynt') }} <a href="/contact/">{{ __('Reach out >', 'flynt') }}</a>
+          </div>
+        {% elseif post.post_type == 'research' %}
+          {% if post.hero_file is not empty %}
+            {% set file = TimberImage(post.hero_file) %}
+            <a class="dpl-post-hero__button" href="{{ file }}" target="_blank">
+              {{ __('Download Report', 'flynt') }}
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
+      {% if post.post_type != 'research' %}
+        <div class="dpl-post-hero__right">
+          <figure class="dpl-post-hero__image dpl-post-hero__image--{{ post.post_type }}">
+            {% set img = Image(post.hero_image) %}
+            <img class="img-responsive" src="{{ img.src }}" alt="{{ img.alt }}" />
+          </figure>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

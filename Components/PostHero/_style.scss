@@ -1,0 +1,175 @@
+.dpl-post-hero {
+  background-color: $blue-050;
+
+  &--home {
+    background-color: $neutral-0;
+  }
+
+  &__boundary {
+    @include regular-boundary;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: rem(40);
+    padding-bottom: rem(40);
+
+    @include bp(sm2) {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: rem(55);
+      padding-bottom: rem(55);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-gap: rem(24);
+    @include bp(sm2){
+      grid-template-columns: 4fr 3fr;
+      grid-gap: rem(80);
+      align-items: center;
+    }
+  }
+
+  &__left {
+    order: 2;
+    @include bp(sm2){
+      order: initial;
+    }
+  }
+
+  &__right {
+    order: 1;
+    @include bp(sm2){
+      order: initial;
+    }
+  }
+
+  &__title {
+    @extend .mobile-preset-2-halyard-semibold-blue-900-2;
+    margin-bottom: rem(15);
+    @include bp(sm2){
+      color: $blue-900;
+      font-family: $font-halyard-display;
+      font-size: 3.357rem;
+      font-weight: 500;
+      line-height: 1.04;
+    }
+  }
+
+  &__description {
+    @extend .mobile-preset-6-mafra-book-blue-900-2;
+    font-weight: 600;
+    @include bp(sm2){
+      color: $blue-900;
+      font-family: $font-mafra;
+      font-size: 1.1rem;
+      line-height: 1.38;
+    }
+  }
+
+  &__button {
+    @include green-button;
+    margin-top: rem(30);
+
+    @media (max-width: $x-small) {
+      width: 100%;
+    }
+  }
+  &__label {
+    @extend .preset-6-halyard-semibold-blue-600;
+    display: flex;
+    margin-bottom: rem(5);
+  }
+  &__link {
+    margin-top: 22px;
+    @extend .mobile-preset-6-halyard-regular;
+    a {
+      @extend .mobile-preset-6-halyard-regular-green-underline;
+    }
+  }
+
+  &__image {
+    max-width: rem(500);
+    height: auto;
+
+    @media (max-width: $x-small) {
+      padding: 0 rem(25);
+    }
+
+    &--issue {
+      //max-width: rem(300);
+    }
+
+    img {
+      margin: 0 auto;
+    }
+  }
+  .icon.report {
+    margin-right: rem(8);
+  }
+
+  &__date {
+    padding-left: rem(16);
+    color: $navy-300;
+    font-weight: normal;
+    font-family: $font-halyard-text;
+  }
+}
+
+.site-single-story {
+  @extend .section-divider;
+}
+
+.single-story {
+  .dpl-post-hero {
+
+    &__image {
+      img {
+        max-width: rem(278);
+      }
+    }
+    @include bp(sm2) {
+      &__grid {
+        grid-template-columns: 7fr 3fr;
+      }
+    }
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      @include bp(sm2) {
+        padding-bottom: rem(40);
+      }
+    }
+  }
+}
+
+.single-news {
+  .dpl-post-hero {
+    &__image {
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.single-person {
+  .dpl-post-hero {
+    &__image {
+      img {
+        width: rem(278);
+        height: rem(278);
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.dpl-post-hero__image--person img {
+	width: 278px;
+  height: 278px;
+  border-radius: 50%;
+}

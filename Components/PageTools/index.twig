@@ -1,0 +1,29 @@
+{% if post.meta('tools_tool') %}
+  <section class="dpl-page-tools dpl-page-tools--{{ post.post_type }}">
+    <div class="dpl-page-tools__boundary">
+      {% if post._wp_page_template == 'page-home.php' or post._wp_page_template == 'page-tools.php' %}
+        <div class="dpl-page-tools__top">
+          <h3 class="dpl-page-tools__heading">{{ title }}</h3>
+          {% if post._wp_page_template == 'page-home.php' %}
+            <a class="dpl-page-tools__link" href="{{ link.url }}">
+              <p>{{ link.title }}</p><span><i class="icon arrow green"></i></span>
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="dpl-page-tools__bottom">
+        {% for item in post.meta('tools_tool') %}
+            {{ renderComponent('CtaTool', {
+                align: item.align,
+                label: item.label,
+                title: item.title,
+                desc: item.description,
+                link: item.link,
+                image: item.image,
+            }) }}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+

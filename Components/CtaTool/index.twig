@@ -1,0 +1,22 @@
+<section class="dpl-cta-tool">
+  <div class="dpl-cta-tool__item dpl-cta-tool__item--{{ align }}">
+    <div class="dpl-cta-tool__left">
+      <div class="dpl-cta-tool__label">
+        {{ label }}
+      </div>
+      <h3 class="dpl-cta-tool__title">
+        {{ title }}
+      </h3>
+      <p class="dpl-cta-tool__desc">
+        {{ desc }}
+      </p>
+      <a class="dpl-cta-tool__button" href="{{ link.url }}" {{ link.target == '_blank' ? 'target="_blank"'}}>
+        {{link.title }}
+      </a>
+    </div>
+    <div class="dpl-cta-tool__right">
+      {% set img = Image(image) %}
+      <img class="img-responsive" src="{{ img.src }}" alt="{{ img.alt }}"/>
+    </div>
+  </div>
+</section>
